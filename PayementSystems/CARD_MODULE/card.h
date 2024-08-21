@@ -1,4 +1,4 @@
-#ifndef CARD_H //File gaurd to protect the project from multiple inclusions
+#ifndef CARD_H //File guard to protect the project from multiple inclusions
 #define CARD_H
 typedef struct {
 	uint8 CardHolderName[25]; // Meant to store the name of the card holder
@@ -6,7 +6,7 @@ typedef struct {
 	uint8 Account_ExpirationDate[6]; // meant to the expiration date 
 }ST_CARDDATA;
 typedef enum {
-	CARD_OK , WRONG_NAME , WRONG_EXPIRATION_DATE , WRONG_PAN
+	CARD_OK , WRONG_NAME , WRONG_EXPIRATION_DATE , WRONG_PAN , NULL_PTR_ERR
 }EN_CARDDATA;/*Hold Symbols that will be used a lot in the project*/
 
 EN_CARDDATA CARD_GetCardHolderName(ST_CARDDATA * Copy_pstructCardData); // using pointers to save stack memory
