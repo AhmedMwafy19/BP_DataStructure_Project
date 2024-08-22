@@ -85,7 +85,7 @@ EN_CARDDATA CARD_GetCardExpiryDate(ST_CARDDATA * Copy_pstructCardData){
 			if(Local_u8LoopCounter==2){
 				continue ;
 			}
-			if(Copy_pstructCardData->Account_ExpirationDate[Local_u8LoopCounter] <= '0' && Copy_pstructCardData->Account_ExpirationDate[Local_u8LoopCounter] >= '9'){
+			if(Copy_pstructCardData->Account_ExpirationDate[Local_u8LoopCounter] < '0' || Copy_pstructCardData->Account_ExpirationDate[Local_u8LoopCounter] > '9'){
 				return WRONG_EXPIRATION_DATE;
 			}
 		}
