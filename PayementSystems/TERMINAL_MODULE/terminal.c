@@ -131,7 +131,7 @@ EN_TERMINALDATA TERMINAL_GetTransactionAmount(ST_TERMINALDATA * Copy_pstructTerm
 	if(Copy_pstructTerminal != NULL){//checks if the pointer is valid
 		 printf("Enter the transaction amount: \n");
 		 scanf("%f",&Local_f32TransAmount);
-		 while (getchar() != '\n'); // to fix the buffer issue (found out about it online)
+		 while (getchar() != '\n'); // to fix the buffer issue (found out about it after searching)
 		if(Local_f32TransAmount <= (float)0){
 			return INVALID_AMOUNT;
 		}/*checks if transfer amount is valid > 0*/

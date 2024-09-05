@@ -1,7 +1,7 @@
 #ifndef TERMINAL_H
 #define TERMINAL_H
- typedef struct
- {
+
+typedef struct{
  f32 Trans_Amount; /*used to store the amount of money
   the user would like to transfer*/
  f32 Max_Trans_Amount; /*used to store the maximum amount of money
