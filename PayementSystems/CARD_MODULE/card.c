@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include "STD_TYPES.h"
+#include "ErrorState.h"
 #include "card.h"
 
 static uint8 StringLength(unsigned char Copy_u8String[]){
@@ -11,7 +12,7 @@ static uint8 StringLength(unsigned char Copy_u8String[]){
 }
 
 
-static uint8 ReadString(char *str,uint8 Length){ /*Function To read String*/
+static uint8 ReadString(uint8 *str,uint8 Length){ /*Function To read String*/
 	uint8 Local_u8LoopCounter = 0 , character;
 	while((character = getchar()) != '\n'){
 		if(Local_u8LoopCounter < Length - 1){
@@ -36,7 +37,7 @@ EN_CARDDATA CARD_GetCardHolderName(ST_CARDDATA * Copy_pstructCardData){
 		}
 
 
-	Local_u8StringLength = StringLength((char *)Copy_pstructCardData -> CardHolderName);
+	Local_u8StringLength = StringLength((unsigned char *)Copy_pstructCardData -> CardHolderName);
 
 	if(Local_u8StringLength < 20 || Local_u8StringLength > 24){
 		return WRONG_NAME;
