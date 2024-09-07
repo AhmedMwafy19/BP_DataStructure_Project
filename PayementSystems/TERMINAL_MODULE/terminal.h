@@ -1,6 +1,6 @@
 #ifndef TERMINAL_H
 #define TERMINAL_H
-
+#include "card.h"
 typedef struct{
  f32 Trans_Amount; /*used to store the amount of money
   the user would like to transfer*/

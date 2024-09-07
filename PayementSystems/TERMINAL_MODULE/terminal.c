@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "STD_TYPES.h"
-#include "card.h"
 #include "terminal.h"
 
 static uint8 ReadString(unsigned char *str,uint8 Length){ /*Function To read String*/

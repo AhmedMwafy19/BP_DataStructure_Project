@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "STD_TYPES.h"
-#include "ErrorState.h"
 #include "card.h"
 
 static uint8 StringLength(unsigned char Copy_u8String[]){
@@ -57,7 +56,7 @@ EN_CARDDATA CARD_GetCardHolderName(ST_CARDDATA * Copy_pstructCardData){
 
 	}
 	else {
-	  return NULL_PTR_ERR;
+	  return WRONG_NAME;
 	}
 	return CARD_OK;
 }
@@ -97,7 +96,7 @@ EN_CARDDATA CARD_GetCardExpiryDate(ST_CARDDATA * Copy_pstructCardData){
 
 	}
 	else {
-	  return NULL_PTR_ERR;
+	  return WRONG_EXPIRATION_DATE;
 	}
 	
 	return CARD_OK;
@@ -127,7 +126,7 @@ EN_CARDDATA CARD_GetCardPAN(ST_CARDDATA * Copy_pstructCardData){
 
 	}
 	else {
-	 return NULL_PTR_ERR;
+	 return WRONG_PAN;
 
 	}
 	

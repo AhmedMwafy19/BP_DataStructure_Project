@@ -5,6 +5,8 @@
  *      Author: Computec
  */
 
+#include "STD_TYPES.h"
+
 #include "application.h"
 
 int main(void) {

@@ -24,40 +24,75 @@ static void Stringcpy(uint8 *str1, const uint8 *str2) {
 
 
  void appStart(void){
-	 FH_LoadAccounts();
 
-	 	 ST_CARDDATA cardData;
+	 FH_LoadAccounts();
+	 FH_LoadTransactions();
+
+	     ST_CARDDATA cardData;
+	     EN_CARDDATA status;
 	     ST_TERMINALDATA terminalData;
+	     EN_TERMINALDATA status1;
 	     ST_TRANSACTION transaction;
 	     EN_TRANS_STATE transactionStatus;
 
 	    /* Get card data from the user */
-	  CARD_GetCardExpiryDate(&cardData);
-	  CARD_GetCardHolderName(&cardData);
-	  CARD_GetCardPAN(&cardData);
-	   /* Get terminal data from the user  */
-	  TERMINAL_SetMaxAmount(&terminalData, MAX_AMOUNT);
-	  TERMINAL_GetTransactionAmount(&terminalData);
-	  TERMINAL_GetTransactionDate(&terminalData);
-printf("1");
-	     /*  Prepare the transaction  */
+	         status = CARD_GetCardHolderName(&cardData);
+	         if (status != CARD_OK) {
+	             printf("Error: Invalid card holder name.\n");
+	             return;
+	         }
+	         printf("Card holder name entered successfully.\n");
+
+	         // Get card expiration date
+	         status = CARD_GetCardExpiryDate(&cardData);
+	         if (status != CARD_OK) {
+	             printf("Error: Invalid expiration date.\n");
+	             return;
+	         }
+	         printf("Card expiration date entered successfully.\n");
+	         // Get card PAN
+	         status = CARD_GetCardPAN(&cardData);
+	         if (status != CARD_OK) {
+	             printf("Error: Invalid PAN.\n");
+	             return;
+	         }
+	         printf("Card PAN entered successfully.\n");
+
+
+
+	      status1 = TERMINAL_SetMaxAmount(&terminalData, MAX_AMOUNT);
+	           if (status1 != TERMINAL_OK) {
+	               printf("Error setting maximum transaction amount.\n");
+	           }
+
+	           // Get the transaction amount
+	           status1 = TERMINAL_GetTransactionAmount(&terminalData);
+	           if (status1 != TERMINAL_OK) {
+	               printf("Error: Invalid transaction amount.\n");
+	           }
+
+	           // Get the transaction date
+	           status1 = TERMINAL_GetTransactionDate(&terminalData);
+	           if (status1 != TERMINAL_OK) {
+	               printf("Error: Invalid transaction date.\n");
+	           }
+
+	           /*  Prepare the transaction  */
 	    Stringcpy(transaction.cardHolderData.CardHolderName , cardData.CardHolderName);
 	    Stringcpy(transaction.cardHolderData.AccountNumber_Prim , cardData.AccountNumber_Prim);
 	    Stringcpy(transaction.cardHolderData.Account_ExpirationDate , cardData.Account_ExpirationDate);
 	    Stringcpy(transaction.terminalData.Transaction_Date , terminalData.Transaction_Date);
 	    transaction.terminalData.Max_Trans_Amount = terminalData.Max_Trans_Amount;
-	    printf("2");
+
 
 	    transaction.terminalData.Trans_Amount =terminalData.Trans_Amount;
 
 	 /* Process the transaction through the server */
-	    printf("3");
 	    transactionStatus = SERVER_RecieveTransactionData(&transaction);
-	    printf("4");
 	     /* Check the transaction status and print appropriate message */
 	     switch (transactionStatus) {
 	         case APPROVED:
-	             printf("Transaction successful.\n");
+	             printf("/nTransaction successful.\n");
 	             break;
 	         case FRAUD_CARD:
 	             printf("Transaction declined: Fraud card.\n");
@@ -79,7 +114,6 @@ printf("1");
 	     // List saved transactions
 	     printf("\nSaved Transactions:\n");
 	     SERVER_ListSavedTransactions();
-
 
  }
 

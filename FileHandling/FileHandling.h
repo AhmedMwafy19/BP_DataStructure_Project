@@ -10,4 +10,5 @@ EN_FH FH_LoadAccounts(void); /*function to load data from data base into program
 EN_FH FH_LoadTransactions(void);
 EN_FH FH_WriteTransactionData(ST_TRANSACTION * Copy_pstructTransactionData);
 EN_FH FH_LoadTransactions(void);
+EN_FH FH_WriteAccountsData(void);
 #endif

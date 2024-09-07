@@ -47,7 +47,7 @@ EN_ACCOUNT_STATE state;
 EN_TRANS_STATE SERVER_RecieveTransactionData(ST_TRANSACTION * Copy_pstruyctTransData);
 EN_SERVER_ERROR SERVER_IsValidAccount(ST_CARDDATA * Copy_pstructCardData);
 EN_SERVER_ERROR SERVER_IsBlockedAccount(ST_ACCOUNTS_DB * Copy_pstructAccountReference);
-EN_SERVER_ERROR SERVER_IsAmountAvailable(ST_TERMINALDATA * Copy_pstructTermData);
+EN_SERVER_ERROR SERVER_IsAmountAvailable(ST_TERMINALDATA * Copy_pstructTermData,ST_ACCOUNTS_DB * Copy_pstructAccountReference) ;
 EN_SERVER_ERROR SERVER_SaveTransaction(ST_TRANSACTION * Copy_pstructTransData);
 void SERVER_ListSavedTransactions(void);
 
